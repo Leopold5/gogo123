@@ -1,0 +1,35 @@
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+
+public class OpenMapPreviewGenerator : MonoBehaviour {
+
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	private MapDrawer mapDrawer;
+
+	public GameObject previewPositionHolder;
+	
+	public Button applyButton;
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	void Start (){
+		mapDrawer = GameManager.instance.GetComponent<MapDrawer>();
+	}
+	
+	void OnEnable (){
+		applyButton.onClick.AddListener(delegate {GameManager.instance.OpenCurrentMapInEditor(); });
+	} 
+	
+	void OnDisable (){
+		applyButton.onClick.RemoveAllListeners ();
+		if (mapDrawer.previewHoldingGO != null) Destroy (mapDrawer.previewHoldingGO);
+	} 
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+}
